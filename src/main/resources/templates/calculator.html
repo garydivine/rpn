@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>RPC</title>
+		<link rel="stylesheet" href="/css/styles.css">
+	</head>
+	<body>
+		<div class="inputForm">
+			<h1>Reverse Polish Notation Calculator</h1>
+			<form action="/enter" method="post">
+				<div>
+					<input name="value" type="number" step="any" required autofocus>
+				</div>
+				<div>
+					<button id="enterButton">Enter</button>
+				</div>
+			</form>
+			
+			
+			<div id="operatorTable">
+				<table>
+					<tbody>
+						<tr>
+							{{#hasTwoOrMoreNumbers}}
+							<td>
+								<form method="post" action="/add">
+									<button>+</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" action="/minus">
+									<button>-</button>
+								</form>
+							</td>
+							{{/hasTwoOrMoreNumbers}}
+							{{#hasOneOrMoreNumbers}}
+							<td>
+								<form method="post" action="/abs">
+									<button>abs</button>
+								</form>
+							</td>
+							{{/hasOneOrMoreNumbers}}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			
+			{{#hasUndoer}}
+			<div>
+				<form method="post" action="/undo">
+					<button id="undoButton">Undo</button>
+				</form>
+			</div>
+			{{/hasUndoer}}
+			
+		</div>
+		<div class="stack">
+			<h2>Stack</h2>
+			
+			<ol>
+				{{#stack}}
+				<li>{{ . }}</li>
+				{{/stack}}
+			</ol>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Palatino Linotype;
+}
+
+.inputForm {
+	display: inline-block;
+	width: 55%;
+	vertical-align: top;
+}
+
+.stack {
+	display: inline-block;
+	width: 40%;
+}
+
+.stack ol li{
+	list-style: none;
+}
+
+
+#enterButton {
+	margin-top: 15px;
+}
+
+#operatorTable {
+	margin-top: 15px;
+}
+
+#undoButton {
+	margin-top: 15px;
+}
