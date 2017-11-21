@@ -2,7 +2,7 @@ package com.lmig.gfc.rpn.models;
 
 import java.util.Stack;
 
-public class OneArgumentUndoer {
+public class OneArgumentUndoer implements Undoer {
 	
 	private double oldValue;
 	
@@ -10,6 +10,7 @@ public class OneArgumentUndoer {
 		this.oldValue = oldValue;
 	}
 	
+	@Override
 	public void undo (Stack<Double> stack) {
 		stack.pop();
 		parentUndo(stack);
