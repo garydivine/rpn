@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.lmig.gfc.rpn.models.AbsoluterOfOneNumber;
 import com.lmig.gfc.rpn.models.AddTwoNumbers;
+import com.lmig.gfc.rpn.models.ClearStack;
 import com.lmig.gfc.rpn.models.DivideTwoNumbers;
 import com.lmig.gfc.rpn.models.ExponentTwoNumbers;
 import com.lmig.gfc.rpn.models.Godoer;
@@ -43,6 +44,7 @@ public class CalculatorController {
 		mv.addObject("hasOneOrMoreNumbers", stack.size() >= 1);
 		mv.addObject("hasUndoer", !undoers.empty());
 		mv.addObject("hasRedoer", !redoers.empty());
+		mv.addObject("hasStack", !stack.empty());
 		return mv;
 	}
 
@@ -96,7 +98,7 @@ public class CalculatorController {
 	@PostMapping("/undo")
 	public ModelAndView undoMath() {
 		Godoer undoer = undoers.pop(); // get most recent Undoer..needs to be a Godoer for the redoers.push()
-		undoer.undo(stack); // call undo method
+		undoer.undo(stack); // call undo method 
 		
 		redoers.push(undoer);
 		
@@ -106,10 +108,20 @@ public class CalculatorController {
 	@PostMapping("/redo")
 	public ModelAndView redoMath() {
 		Godoer redoer = redoers.pop();
-		redoer.goDoIt();
+		redoer.goDoIt(); 
 		
 		undoers.push(redoer);
 		
+		return redirectToHome();
+	}
+	
+	@PostMapping("/clear")
+	public ModelAndView clear() {
+		ClearStack clearer = new ClearStack(stack);
+		clearer.goDoIt();
+		
+		undoers.push(clearer); 
+		redoers.clear();
 		return redirectToHome();
 	}
 	

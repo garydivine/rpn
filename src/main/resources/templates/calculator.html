@@ -17,6 +17,15 @@
 				</div>
 			</form>
 			
+			{{#hasStack}}
+			<div>
+				<form method="post" action="/clear">
+					<button id="clearButton">Clear</button>
+				</form>
+			</div>
+			{{/hasStack}}
+			
+			
 			
 			<div id="operatorTable">
 				<table>
@@ -77,6 +86,7 @@
 				</form>
 			</div>
 			{{/hasRedoer}}
+
 			
 		</div>
 		<div class="stack">
