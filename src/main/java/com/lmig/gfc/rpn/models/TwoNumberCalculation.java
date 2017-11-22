@@ -2,9 +2,11 @@ package com.lmig.gfc.rpn.models;
 
 import java.util.Stack;
 
-public abstract class TwoNumberCalculation implements Undoer { // doesnt have enough info to actually do any math by
+public abstract class TwoNumberCalculation implements Godoer, Undoer { // doesnt have enough info to actually do any math by
 																// itself, needs to be abstract..no one can call "new"
-																// on the class (can't directly instantiate)
+																// on the class (can't directly instantiate)...this can
+																// help out children classes, but each
+																// child should "specialize"
 
 	private Stack<Double> stack = new Stack<Double>();
 	private Undoer undoer;
@@ -22,7 +24,7 @@ public abstract class TwoNumberCalculation implements Undoer { // doesnt have en
 		undoer = new TwoArgumentUndoer(firstNumber, secondNumber);
 	}
 
-	protected abstract double doMath(double first, double second); // this is just a placeholder
+	protected abstract double doMath(double first, double second); // ABSTRACT method...this is just a placeholder
 																	// doesnt need a return anything or have {}
 																	// child class must override the method
 

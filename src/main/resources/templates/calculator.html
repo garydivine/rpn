@@ -70,6 +70,14 @@
 			</div>
 			{{/hasUndoer}}
 			
+			{{#hasRedoer}}
+			<div>
+				<form method="post" action="/redo">
+					<button id="redoButton">Redo</button>
+				</form>
+			</div>
+			{{/hasRedoer}}
+			
 		</div>
 		<div class="stack">
 			<h2>Stack</h2>
