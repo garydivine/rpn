@@ -17,6 +17,7 @@ import com.lmig.gfc.rpn.models.MultiplyTwoNumbers;
 import com.lmig.gfc.rpn.models.OneArgumentUndoer;
 import com.lmig.gfc.rpn.models.PushAction;
 import com.lmig.gfc.rpn.models.SubtractTwoNumbers;
+import com.lmig.gfc.rpn.models.SwitchTwoNumbers;
 import com.lmig.gfc.rpn.models.TwoArgumentUndoer;
 import com.lmig.gfc.rpn.models.TwoNumberCalculation;
 import com.lmig.gfc.rpn.models.Undoer;
@@ -95,6 +96,12 @@ public class CalculatorController {
 		return doOperation(expo);
 	}
 	
+	@PostMapping("/switch")
+	public ModelAndView switchTwoNumbers() {
+		SwitchTwoNumbers swth = new SwitchTwoNumbers(stack);
+		return doOperation(swth);
+	}
+	
 	@PostMapping("/undo")
 	public ModelAndView undoMath() {
 		Godoer undoer = undoers.pop(); // get most recent Undoer..needs to be a Godoer for the redoers.push()
@@ -118,10 +125,7 @@ public class CalculatorController {
 	@PostMapping("/clear")
 	public ModelAndView clear() {
 		ClearStack clearer = new ClearStack(stack);
-		clearer.goDoIt();
-		
-		undoers.push(clearer); 
-		redoers.clear();
+		doOperation(clearer);
 		return redirectToHome();
 	}
 	

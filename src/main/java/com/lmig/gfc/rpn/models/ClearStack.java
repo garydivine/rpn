@@ -2,9 +2,9 @@ package com.lmig.gfc.rpn.models;
 
 import java.util.Stack;
 
-public class ClearStack implements Godoer, Undoer{
+public class ClearStack implements Godoer{
 	
-	Stack<Double> stack = new Stack<Double>();
+	Stack<Double> stack;
 	Stack<Double> initialEntryStack = new Stack<Double>();
 	
 	
@@ -22,7 +22,7 @@ public class ClearStack implements Godoer, Undoer{
 	@Override
 	public void undo(Stack<Double> stack) {
 		stack.addAll(initialEntryStack);
-		initialEntryStack.clear();
+		initialEntryStack.clear(); 
 	}
 	
 
